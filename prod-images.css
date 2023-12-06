@@ -1,0 +1,31 @@
+.prod-img {
+    width: 100%;
+    border-radius: 20px;
+    user-select: none;
+  }
+  
+  .img-select {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+  }
+  
+  .img-select img {
+    width: 18%;
+    margin: 15px 10px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    user-select: none;
+    transition: opacity 0.3s ease;
+  }
+  
+  .img-select img:hover {
+    border: 3px solid #f59e0b;
+    box-sizing: border-box;
+  }
+  
+  .img-select img.selected {
+    opacity: 0.5;
+  }

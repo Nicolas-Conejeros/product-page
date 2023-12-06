@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="navbar.css" />
+    <link rel="stylesheet" href="navbar-drawer.css" />
+    <link rel="stylesheet" href="prod-images.css" />
+    <link rel="stylesheet" href="prod-des.css" />
+  </head>
+
+  <body>
+    <!-- NavBar -->
+    <div class="drawer" id="myDrawer">
+      <div class="close-btn" onclick="closeDrawer()">&times;</div>
+      <div class="drawer-content">
+        <div class="drawer-list">
+          <a href="#">Collections</a>
+          <a href="#">Men</a>
+          <a href="#">Women</a>
+          <a href="#">About</a>
+          <a href="#">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="backdrop" id="backdrop" onclick="closeDrawer()"></div>
+    <nav class="navbar" id="navbar">
+      <div class="navbar-left">
+        <img
+          class="navbar-toggle"
+          src="images/icon-menu.svg"
+          onclick="openDrawer()"
+        />
+        <img class="logo" src="images/logo.svg" />
+
+        <ul class="navbar-list">
+          <li><a href="#">Collections</a></li>
+          <li><a href="#">Men</a></li>
+          <li><a href="#">Women</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div class="navbar-right" onmouseleave="closeCart()">
+        <img class="cart" src="images/icon-cart.svg" onmouseover="openCart()" />
+        <img
+          class="avatar"
+          src="images/image-avatar.png"
+          onmouseover="openCart()"
+        />
+        <div class="cart-info" id="cart-info" onmouseleave="closeCart()">
+          <div class="cart-info-top">Cart</div>
+          <div class="cart-info-list"></div>
+        </div>
+      </div>
+    </nav>
+    <!--  -->
+    <!-- Page contents -->
+    <div class="prod-wrapper" id="prod-wrapper">
+      <!-- Product Image -->
+      <div class="prod" id="prod-img-wrapper">
+        <img
+          class="prod-img"
+          id="selected-image"
+          src="images/image-product-1.jpg"
+          draggable="false"
+        />
+        <div class="img-select" id="img-select"></div>
+      </div>
+      <!-- Product Details -->
+      <div class="prod" id="prod-det-wrapper">
+        <div class="company-name-container">
+          <h2 id="company-name">sneaker company</h2>
+        </div>
+        <div class="prod-title-container">
+          <h1 id="prod-title">fall limited edition sneakers</h1>
+        </div>
+        <div class="prod-desc-container">
+          <h3 id="prod-desc">
+            These low-profile sneakers are your perfect casual wear companion.
+            Featuring a durable rubber outer sole, they'll withsatand everything
+            the weather can offer
+          </h3>
+        </div>
+        <div class="prod-pricing-container">
+          <div class="price-status">
+            <div id="price">$125.00</div>
+            <div id="disscount">
+              <h5>50%</h5>
+            </div>
+          </div>
+
+          <div id="prev-price">$250.00</div>
+        </div>
+        <div class="item-to-cart">
+          <div id="quantity">
+            <div id="remove-item" onclick="removeItem()">-</div>
+            <input
+              id="item-count"
+              type="number"
+              pattern="/\D/g"
+              oninput="validateNumericInput(this)"
+              min="0"
+              max="5"
+              value="0"
+            />
+            <div id="add-item" onclick="addItem()">+</div>
+          </div>
+          <div id="add-to-cart-btn">
+            <svg id="cart-btn" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M20.925 3.641H3.863L3.61.816A.896.896 0 0 0 2.717 0H.897a.896.896 0 1 0 0 1.792h1l1.031 11.483c.073.828.52 1.726 1.291 2.336C2.83 17.385 4.099 20 6.359 20c1.875 0 3.197-1.87 2.554-3.642h4.905c-.642 1.77.677 3.642 2.555 3.642a2.72 2.72 0 0 0 2.717-2.717 2.72 2.72 0 0 0-2.717-2.717H6.365c-.681 0-1.274-.41-1.53-1.009l14.321-.842a.896.896 0 0 0 .817-.677l1.821-7.283a.897.897 0 0 0-.87-1.114ZM6.358 18.208a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm10.015 0a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm2.021-7.243-13.8.81-.57-6.341h15.753l-1.383 5.53Z"
+                fill-rule="nonzero"
+              />
+            </svg>
+            <div id="cart-btn-txt">Add to cart</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--  -->
+    <script src="script.js"></script>
+  </body>
+</html>
