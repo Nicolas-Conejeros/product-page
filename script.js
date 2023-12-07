@@ -41,7 +41,7 @@ function closeCart() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  const thumbnailContainer = document.getElementById("img-select");
+  const thumbnailContainer = document.getElementById("img-selection");
   const selectedImage = document.getElementById("selected-image");
 
   thumbnailUrls.forEach((imageUrl, index) => {
