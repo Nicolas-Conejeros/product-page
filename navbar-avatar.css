@@ -1,0 +1,12 @@
+.avatar {
+    width: 50px;
+    cursor: pointer;
+    box-sizing: border-box;
+  }
+  
+  .avatar:hover {
+    border: 2px solid #f59e0b;
+    border-radius: 50%;
+    box-sizing: border-box;
+  }
+  

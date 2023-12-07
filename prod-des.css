@@ -16,10 +16,7 @@
   margin: 0 0;
 }
 
-#prod-desc {
-  font-size: 1.125rem; /* 18px */
-  font-weight: 400;
-  color: #6b7280;
+.prod-desc-container h3 {
   margin-right: 10%;
 }
 
@@ -126,10 +123,12 @@
   border-radius: 10px;
   margin-left: 5%;
   margin-right: 10%;
-  width: 60%;
+  width: 45%;
   background-color: #f59e0b;
   font-weight: 600;
   color: white;
+  cursor: pointer;
+  user-select: none;
 }
 
 #add-to-cart-btn:hover {
@@ -140,4 +139,5 @@
   width: 22px;
   height: 20px;
   fill: white;
+  user-select: none;
 }
