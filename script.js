@@ -1,3 +1,4 @@
+// Loaded data
 const imageUrls = [
   "images/image-product-1.jpg",
   "images/image-product-2.jpg",
@@ -13,15 +14,17 @@ const sneakers = {
   id: 1,
   name: "Fall Limited Edition Sneakers",
   thumbnail: thumbnailUrls[0],
-  price: 125,
+  currentPrice: 125,
   discount: 50,
 };
 
 let filledCart = false;
 let productQuantity = 0;
 
-const cartItems = [];
+// Insert loaded data
+insertDataHTML();
 
+// Drawer functionality
 function openDrawer() {
   setElementStyle("myDrawer", "width", "250px");
   setElementStyle("backdrop", "display", "inline");
@@ -40,6 +43,7 @@ function closeCart() {
   setElementStyle("cart-info", "display", "none");
 }
 
+// Image selector
 document.addEventListener("DOMContentLoaded", function () {
   const thumbnailContainer = document.getElementById("img-selection");
   const selectedImage = document.getElementById("selected-image");
@@ -66,6 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
+// Buying options
 function addItem() {
   updateItemCount(1);
 }
@@ -81,13 +86,6 @@ function updateItemCount(change) {
   productQuantity = newValue;
 }
 
-function validateNumericInput(input) {
-  input.value = input.value.replace(/\D/g, "");
-  const numericValue = parseInt(input.value, 10) || 0;
-  productQuantity = Math.min(5, Math.max(0, numericValue));
-  input.value = productQuantity;
-}
-
 function fillCart() {
   if (filledCart || productQuantity === 0) return;
   filledCart = true;
@@ -101,8 +99,12 @@ function fillCart() {
       <div class="cart-card-r">
         <h5 class="prod-desc">${sneakers.name}</h5>
         <h6 class="prod-desc">
-          <span>$${sneakers.price} x ${productQuantity}</span>
-          <span class="prod-total">$${sneakers.price * productQuantity}</span>
+          <span>${intPriceToUSD(
+            sneakers.currentPrice
+          )} x ${productQuantity}</span>
+          <span class="prod-total">${intPriceToUSD(
+            sneakers.currentPrice * productQuantity
+          )}</span>
         </h6>
       </div>
       <img id="remove-item-svg" src="images/icon-delete.svg" />
@@ -111,7 +113,6 @@ function fillCart() {
 }
 
 // Utility functions
-
 function setElementStyle(elementId, property, value) {
   document.getElementById(elementId).style[property] = value;
 }
@@ -124,4 +125,36 @@ function removeAllSelectedClass(selector) {
 function addClassAtIndex(selector, index, className) {
   const imageAtIndex = document.querySelectorAll(selector)[index];
   if (imageAtIndex) imageAtIndex.classList.add(className);
+}
+
+function intPriceToUSD(price) {
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+  }).format(price);
+}
+
+function previousPrice(currentPrice, discountPercentage) {
+  // Ensure the discount is a decimal value (e.g., 20% becomes 0.2)
+  const discountDecimal = discountPercentage / 100;
+
+  // Calculate the previous price
+  return currentPrice / (1 - discountDecimal);
+}
+
+function insertDataHTML() {
+  document.getElementById("price").innerHTML += intPriceToUSD(
+    sneakers.currentPrice
+  );
+  document.getElementById("disscount").innerHTML += sneakers.discount + "%";
+  document.getElementById("prev-price").innerHTML += intPriceToUSD(
+    previousPrice(sneakers.currentPrice, sneakers.discount)
+  );
+}
+
+function validateNumericInput(input) {
+  input.value = input.value.replace(/\D/g, "");
+  const numericValue = parseInt(input.value, 10) || 0;
+  productQuantity = Math.min(5, Math.max(0, numericValue));
+  input.value = productQuantity;
 }

@@ -53,12 +53,13 @@
   transition: 0.3s;
 }
 
-.drawer .close-btn {
+.close-btn {
   color: #6b7280;
   position: absolute;
   top: 25px;
   left: 25px;
   font-size: 30px;
+  cursor: pointer;
 }
 
 .backdrop {
