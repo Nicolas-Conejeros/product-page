@@ -3,14 +3,6 @@
   border-radius: 20px;
   user-select: none;
 }
-@media screen and (max-width: 425px) {
-  .prod-img {
-    border-radius: 0px;
-  }
-  #img-selection {
-    display: none;
-  }
-}
 
 #img-selection {
   user-select: none;
@@ -32,4 +24,12 @@
 
 #img-selection img.selected {
   opacity: 0.5;
+}
+@media screen and (max-width: 425px) {
+  .prod-img {
+    border-radius: 0px;
+  }
+  #img-selection {
+    display: none;
+  }
 }
