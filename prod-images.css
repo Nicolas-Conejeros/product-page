@@ -7,13 +7,12 @@
   .prod-img {
     border-radius: 0px;
   }
+  #img-selection {
+    display: none;
+  }
 }
 
 #img-selection {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
   user-select: none;
 }
 

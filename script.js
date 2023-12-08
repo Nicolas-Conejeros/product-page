@@ -11,7 +11,7 @@ const thumbnailUrls = imageUrls.map((url) =>
 );
 
 const sneakers = {
-  id: 1,
+  id: "1b35a57Jf",
   name: "Fall Limited Edition Sneakers",
   thumbnail: thumbnailUrls[0],
   currentPrice: 125,
@@ -92,7 +92,7 @@ function fillCart() {
 
   const cardContainer = document.getElementById("cart-list");
   const htmlCode = `
-    <div class="cart-card"> 
+    <div class="cart-card" id=${sneakers.id}> 
       <div class="cart-card-l">
         <img id="cart-prod-img" src="${sneakers.thumbnail}" />
       </div>
@@ -107,9 +107,16 @@ function fillCart() {
           )}</span>
         </h6>
       </div>
-      <img id="remove-item-svg" src="images/icon-delete.svg" />
+      <img id="remove-item-svg" src="images/icon-delete.svg" onclick="removeFromCart()" />
     </div>`;
   cardContainer.innerHTML += htmlCode;
+}
+
+function removeFromCart(id) {
+  // Since its a static page
+  id = sneakers.id;
+  document.getElementById(sneakers.id).remove();
+  filledCart = false;
 }
 
 // Utility functions
