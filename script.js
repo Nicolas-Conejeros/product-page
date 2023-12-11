@@ -26,37 +26,43 @@ insertDataHTML();
 
 // Drawer functionality
 function openDrawer() {
-  setElementStyle("myDrawer", "width", "250px");
-  setElementStyle("backdrop", "display", "inline");
+  setElementStyle("myDrawer", { width: "250px" });
+  setElementStyle("backdrop", { display: "inline" }, closeDrawer);
 }
 
 function closeDrawer() {
-  setElementStyle("myDrawer", "width", "0");
-  setElementStyle("backdrop", "display", "none");
+  setElementStyle("myDrawer", { width: "0" });
+  setElementStyle("backdrop", { display: "none" });
 }
 
 function openCart() {
-  setElementStyle("cart-info", "display", "inline");
+  setElementStyle("cart-info", { display: "inline" });
 }
 
 function closeCart() {
-  setElementStyle("cart-info", "display", "none");
+  setElementStyle("cart-info", { display: "none" });
 }
 
 // Image selector
 document.addEventListener("DOMContentLoaded", function () {
-  const thumbnailContainer = document.getElementById("img-selection");
-  const selectedImage = document.getElementById("selected-image");
+  const thumbnailContainer = document.getElementById("main-thumbnails");
+  const LBThumbnailContainer = document.getElementById("lightbox-thumbnails");
+  const selectedImagesSrc = document.querySelectorAll(".selected-image");
 
   thumbnailUrls.forEach((imageUrl, index) => {
-    const thumbnail = createThumbnail(imageUrl, index);
+    const thumbnail = createThumbnail(imageUrl, "thumbnail", index);
     thumbnailContainer.appendChild(thumbnail);
   });
 
-  function createThumbnail(imageUrl, index) {
+  thumbnailUrls.forEach((imageUrl, index) => {
+    const thumbnail = createThumbnail(imageUrl, "thumbnail-lightbox", index);
+    LBThumbnailContainer.appendChild(thumbnail);
+  });
+
+  function createThumbnail(imageUrl, name, index) {
     const thumbnail = document.createElement("img");
     thumbnail.src = imageUrl;
-    thumbnail.alt = `Thumbnail ${index + 1}`;
+    thumbnail.alt = `${name} ${index + 1}`;
     thumbnail.draggable = false;
     thumbnail.addEventListener("click", () => selectImage(index));
     if (index === 0) thumbnail.classList.add("selected");
@@ -64,11 +70,28 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function selectImage(index) {
-    selectedImage.src = imageUrls[index];
-    removeAllSelectedClass(".img-select img");
-    addClassAtIndex(".img-select img", index, "selected");
+    selectedImagesSrc.forEach((selectedImage) => {
+      selectedImage.src = imageUrls[index];
+    });
+    removeAllSelectedClass(".img-selection img");
+    addClassAtIndex(".img-selection img", index, "selected");
   }
 });
+
+// LightBox
+function openLightBox() {
+  setElementStyle("modalOverlay", { display: "flex" });
+  // Close the lightbox when clicking outside of it
+  window.addEventListener("click", function (event) {
+    if (event.target === modalOverlay) {
+      closeLightBox();
+    }
+  });
+}
+
+function closeLightBox() {
+  setElementStyle("modalOverlay", { display: "none" });
+}
 
 // Buying options
 function addItem() {
@@ -113,15 +136,20 @@ function fillCart() {
 }
 
 function removeFromCart(id) {
-  // Since its a static page
+  // Since it's a static page
   id = sneakers.id;
   document.getElementById(sneakers.id).remove();
   filledCart = false;
 }
 
 // Utility functions
-function setElementStyle(elementId, property, value) {
-  document.getElementById(elementId).style[property] = value;
+function setElementStyle(elementId, styles, fn) {
+  const element = document.getElementById(elementId);
+  if (fn) element.onclick = fn;
+
+  Object.entries(styles).forEach(([property, value]) => {
+    element.style[property] = value;
+  });
 }
 
 function removeAllSelectedClass(selector) {
@@ -131,7 +159,13 @@ function removeAllSelectedClass(selector) {
 
 function addClassAtIndex(selector, index, className) {
   const imageAtIndex = document.querySelectorAll(selector)[index];
-  if (imageAtIndex) imageAtIndex.classList.add(className);
+  const imageAtIndexLB =
+    document.querySelectorAll(selector)[index | imageUrls.length];
+
+  if (imageAtIndex) {
+    imageAtIndex.classList.add(className);
+    imageAtIndexLB.classList.add(className);
+  }
 }
 
 function intPriceToUSD(price) {
@@ -142,10 +176,7 @@ function intPriceToUSD(price) {
 }
 
 function previousPrice(currentPrice, discountPercentage) {
-  // Ensure the discount is a decimal value (e.g., 20% becomes 0.2)
   const discountDecimal = discountPercentage / 100;
-
-  // Calculate the previous price
   return currentPrice / (1 - discountDecimal);
 }
 
@@ -153,7 +184,7 @@ function insertDataHTML() {
   document.getElementById("price").innerHTML += intPriceToUSD(
     sneakers.currentPrice
   );
-  document.getElementById("disscount").innerHTML += sneakers.discount + "%";
+  document.getElementById("disscount").innerHTML += `${sneakers.discount}%`;
   document.getElementById("prev-price").innerHTML += intPriceToUSD(
     previousPrice(sneakers.currentPrice, sneakers.discount)
   );

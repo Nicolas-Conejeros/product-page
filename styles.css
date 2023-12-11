@@ -21,7 +21,7 @@ body {
 .prod {
   width: 43%;
   min-width: 400px;
-  background-color: white;
+  background-color: transparent;
 }
 
 .prod-desc {

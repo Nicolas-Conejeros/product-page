@@ -26,7 +26,7 @@
         </div>
       </div>
     </div>
-    <div class="backdrop" id="backdrop" onclick="closeDrawer()"></div>
+    <div class="backdrop" id="backdrop"></div>
     <nav class="navbar" id="navbar">
       <div class="navbar-left">
         <img
@@ -65,16 +65,28 @@
     </nav>
     <!--  -->
     <!-- Page contents -->
+
     <div class="prod-wrapper">
       <!-- Product Image -->
-      <div class="prod" id="prod-img-wrapper">
+      <div class="prod">
         <img
-          class="prod-img"
-          id="selected-image"
+          class="prod-img selected-image"
           src="images/image-product-1.jpg"
           draggable="false"
+          onclick="openLightBox()"
         />
-        <div id="img-selection"></div>
+        <div class="img-selection" id="main-thumbnails"></div>
+      </div>
+      <!-- Lightbox -->
+      <div id="modalOverlay">
+        <div class="prod" id="lightbox">
+          <img
+            class="prod-img selected-image"
+            src="images/image-product-1.jpg"
+            draggable="false"
+          />
+          <div class="img-selection" id="lightbox-thumbnails"></div>
+        </div>
       </div>
       <!-- Product Details -->
       <div class="prod">
