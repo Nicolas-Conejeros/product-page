@@ -2,6 +2,33 @@
   width: 100%;
   border-radius: 20px;
   user-select: none;
+  z-index: 1;
+}
+
+.image-container {
+  position: relative;
+  display: inline-block;
+}
+
+.swipe-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: white;
+  border-radius: 100%;
+  border: none;
+  cursor: pointer;
+  height: 10%;
+}
+
+.left {
+  transform: translateX(-50%);
+  left: 0;
+}
+
+.right {
+  transform: translateX(50%);
+  right: 0;
 }
 
 #modalOverlay {

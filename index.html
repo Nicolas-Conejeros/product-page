@@ -1,141 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" href="navbar.css" />
-    <link rel="stylesheet" href="navbar-drawer.css" />
-    <link rel="stylesheet" href="navbar-cart.css" />
-    <link rel="stylesheet" href="navbar-avatar.css" />
-    <link rel="stylesheet" href="prod-images.css" />
-    <link rel="stylesheet" href="prod-des.css" />
-  </head>
 
-  <body>
-    <!-- NavBar -->
-    <div class="drawer" id="myDrawer">
-      <div class="close-btn" onclick="closeDrawer()">&times;</div>
-      <div class="drawer-content">
-        <div class="drawer-list">
-          <a href="#">Collections</a>
-          <a href="#">Men</a>
-          <a href="#">Women</a>
-          <a href="#">About</a>
-          <a href="#">Contact</a>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="navbar.css" />
+  <link rel="stylesheet" href="navbar-drawer.css" />
+  <link rel="stylesheet" href="navbar-cart.css" />
+  <link rel="stylesheet" href="navbar-avatar.css" />
+  <link rel="stylesheet" href="prod-images.css" />
+  <link rel="stylesheet" href="prod-des.css" />
+</head>
+
+<body>
+  <!-- NavBar -->
+  <div class="drawer" id="myDrawer">
+    <div class="close-btn" onclick="closeDrawer()">&times;</div>
+    <div class="drawer-content">
+      <div class="drawer-list">
+        <a href="#">Collections</a>
+        <a href="#">Men</a>
+        <a href="#">Women</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+  </div>
+  <div class="backdrop" id="backdrop"></div>
+  <nav class="navbar" id="navbar">
+    <div class="navbar-left">
+      <img class="navbar-toggle" src="images/icon-menu.svg" onclick="openDrawer()" />
+      <img class="logo" src="images/logo.svg" />
+
+      <ul class="navbar-list">
+        <li><a href="#">Collections</a></li>
+        <li><a href="#">Men</a></li>
+        <li><a href="#">Women</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+    <div class="navbar-right" onmouseleave="closeCart()">
+      <!-- Cart SVG -->
+      <img class="cart" src="images/icon-cart.svg" onmouseover="openCart()" />
+
+      <!-- User -->
+      <img class="avatar" src="images/image-avatar.png" onmouseover="openCart()" />
+
+      <!-- Cart -->
+      <div class="cart-info" id="cart-info" onmouseleave="closeCart()">
+        <div class="cart-header">Cart</div>
+
+        <div class="cart-body" id="cart-list"></div>
+      </div>
+    </div>
+  </nav>
+  <!--  -->
+  <!-- Page contents -->
+
+  <div class="prod-wrapper">
+    <!-- Product Image -->
+    <div class="prod">
+      <div class="image-container">
+        <img id="product-img" class="prod-img selected-image" src="images/image-product-1.jpg" draggable="false"
+          onclick="openLightBox()" />
+        <svg id="lb-main" class="swipe-button left" viewBox="0 0 24 24" fill="none"
+          xmlns="http://www.w3.org/2000/svg">
+          <path d="M14 8L10 12L14 16" stroke="#200E32" strokeWidth="2" strokeLinecap="round" stroke-linejoin="round">
+          </path>
+        </svg>
+        <svg id="rb-main" class="swipe-button right" viewBox="0 0 24 24" fill="none"
+          xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 16L14 12L10 8" stroke="#200E32" strokeWidth="2" strokeLinecap="round" stroke-linejoin="round">
+          </path>
+        </svg>
+      </div>
+      <!-- <img class="prod-img selected-image" src="images/image-product-1.jpg" draggable="false"
+        onclick="openLightBox()" /> -->
+      <div class="img-selection" id="main-thumbnails"></div>
+    </div>
+    <!-- Lightbox -->
+    <div id="modalOverlay">
+      <div class="prod" id="lightbox">
+        <div class="image-container">
+          <img class="prod-img selected-image" src="images/image-product-1.jpg" draggable="false" />
+          <svg id="left-button" class="swipe-button left" viewBox="0 0 24 24" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path d="M14 8L10 12L14 16" stroke="#200E32" strokeWidth="2" strokeLinecap="round" stroke-linejoin="round">
+            </path>
+          </svg>
+          <svg id="right-button" class="swipe-button right" viewBox="0 0 24 24" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 16L14 12L10 8" stroke="#200E32" strokeWidth="2" strokeLinecap="round" stroke-linejoin="round">
+            </path>
+          </svg>
+        </div>
+
+        <div class="img-selection" id="lightbox-thumbnails"></div>
+      </div>
+    </div>
+    <!-- Product Details -->
+    <div class="prod">
+      <!-- Company -->
+      <h2 id="company-name">sneaker company</h2>
+      <!-- Title -->
+      <h1 id="prod-title">fall limited edition sneakers</h1>
+      <!-- Description -->
+      <h3 class="prod-desc" id="item-description">
+        These low-profile sneakers are your perfect casual wear companion.
+        Featuring a durable rubber outer sole, they'll withsatand everything
+        the weather can offer
+      </h3>
+      <!-- Pricing -->
+      <div class="price-status">
+        <div id="price"></div>
+
+        <h5 id="disscount"></h5>
+      </div>
+      <div id="prev-price"></div>
+
+      <!-- Buying options -->
+      <div class="buying-options">
+        <div id="quantity">
+          <div class="quantity-btn" onclick="removeItem()">-</div>
+          <input id="item-count" type="number" pattern="/\D/g" oninput="validateNumericInput(this)" min="0" max="5"
+            value="0" />
+          <div class="quantity-btn" onclick="addItem()">+</div>
+        </div>
+        <div id="submit-btn" onclick="fillCart()">
+          <svg id="cart-btn" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M20.925 3.641H3.863L3.61.816A.896.896 0 0 0 2.717 0H.897a.896.896 0 1 0 0 1.792h1l1.031 11.483c.073.828.52 1.726 1.291 2.336C2.83 17.385 4.099 20 6.359 20c1.875 0 3.197-1.87 2.554-3.642h4.905c-.642 1.77.677 3.642 2.555 3.642a2.72 2.72 0 0 0 2.717-2.717 2.72 2.72 0 0 0-2.717-2.717H6.365c-.681 0-1.274-.41-1.53-1.009l14.321-.842a.896.896 0 0 0 .817-.677l1.821-7.283a.897.897 0 0 0-.87-1.114ZM6.358 18.208a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm10.015 0a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm2.021-7.243-13.8.81-.57-6.341h15.753l-1.383 5.53Z"
+              fill-rule="nonzero" />
+          </svg>
+          <div id="cart-btn-txt">Add to cart</div>
         </div>
       </div>
     </div>
-    <div class="backdrop" id="backdrop"></div>
-    <nav class="navbar" id="navbar">
-      <div class="navbar-left">
-        <img
-          class="navbar-toggle"
-          src="images/icon-menu.svg"
-          onclick="openDrawer()"
-        />
-        <img class="logo" src="images/logo.svg" />
+  </div>
+  <!--  -->
+  <script src="script.js"></script>
+</body>
 
-        <ul class="navbar-list">
-          <li><a href="#">Collections</a></li>
-          <li><a href="#">Men</a></li>
-          <li><a href="#">Women</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Contact</a></li>
-        </ul>
-      </div>
-      <div class="navbar-right" onmouseleave="closeCart()">
-        <!-- Cart SVG -->
-        <img class="cart" src="images/icon-cart.svg" onmouseover="openCart()" />
-
-        <!-- User -->
-        <img
-          class="avatar"
-          src="images/image-avatar.png"
-          onmouseover="openCart()"
-        />
-
-        <!-- Cart -->
-        <div class="cart-info" id="cart-info" onmouseleave="closeCart()">
-          <div class="cart-header">Cart</div>
-
-          <div class="cart-body" id="cart-list"></div>
-        </div>
-      </div>
-    </nav>
-    <!--  -->
-    <!-- Page contents -->
-
-    <div class="prod-wrapper">
-      <!-- Product Image -->
-      <div class="prod">
-        <img
-          class="prod-img selected-image"
-          src="images/image-product-1.jpg"
-          draggable="false"
-          onclick="openLightBox()"
-        />
-        <div class="img-selection" id="main-thumbnails"></div>
-      </div>
-      <!-- Lightbox -->
-      <div id="modalOverlay">
-        <div class="prod" id="lightbox">
-          <img
-            class="prod-img selected-image"
-            src="images/image-product-1.jpg"
-            draggable="false"
-          />
-          <div class="img-selection" id="lightbox-thumbnails"></div>
-        </div>
-      </div>
-      <!-- Product Details -->
-      <div class="prod">
-        <!-- Company -->
-        <h2 id="company-name">sneaker company</h2>
-        <!-- Title -->
-        <h1 id="prod-title">fall limited edition sneakers</h1>
-        <!-- Description -->
-        <h3 class="prod-desc" id="item-description">
-          These low-profile sneakers are your perfect casual wear companion.
-          Featuring a durable rubber outer sole, they'll withsatand everything
-          the weather can offer
-        </h3>
-        <!-- Pricing -->
-        <div class="price-status">
-          <div id="price"></div>
-
-          <h5 id="disscount"></h5>
-        </div>
-        <div id="prev-price"></div>
-
-        <!-- Buying options -->
-        <div class="buying-options">
-          <div id="quantity">
-            <div class="quantity-btn" onclick="removeItem()">-</div>
-            <input
-              id="item-count"
-              type="number"
-              pattern="/\D/g"
-              oninput="validateNumericInput(this)"
-              min="0"
-              max="5"
-              value="0"
-            />
-            <div class="quantity-btn" onclick="addItem()">+</div>
-          </div>
-          <div id="submit-btn" onclick="fillCart()">
-            <svg id="cart-btn" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M20.925 3.641H3.863L3.61.816A.896.896 0 0 0 2.717 0H.897a.896.896 0 1 0 0 1.792h1l1.031 11.483c.073.828.52 1.726 1.291 2.336C2.83 17.385 4.099 20 6.359 20c1.875 0 3.197-1.87 2.554-3.642h4.905c-.642 1.77.677 3.642 2.555 3.642a2.72 2.72 0 0 0 2.717-2.717 2.72 2.72 0 0 0-2.717-2.717H6.365c-.681 0-1.274-.41-1.53-1.009l14.321-.842a.896.896 0 0 0 .817-.677l1.821-7.283a.897.897 0 0 0-.87-1.114ZM6.358 18.208a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm10.015 0a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm2.021-7.243-13.8.81-.57-6.341h15.753l-1.383 5.53Z"
-                fill-rule="nonzero"
-              />
-            </svg>
-            <div id="cart-btn-txt">Add to cart</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!--  -->
-    <script src="script.js"></script>
-  </body>
 </html>

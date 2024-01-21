@@ -20,6 +20,7 @@ const sneakers = {
 
 let filledCart = false;
 let productQuantity = 0;
+let currentImageIndex = 0;
 
 // Insert loaded data
 insertDataHTML();
@@ -48,6 +49,46 @@ document.addEventListener("DOMContentLoaded", function () {
   const thumbnailContainer = document.getElementById("main-thumbnails");
   const LBThumbnailContainer = document.getElementById("lightbox-thumbnails");
   const selectedImagesSrc = document.querySelectorAll(".selected-image");
+  const RButton = document.getElementById("right-button");
+  const LButton = document.getElementById("left-button");
+
+  function addClickEvent() {
+    document.getElementById('lb-main').addEventListener('click', prevImage);
+    document.getElementById('rb-main').addEventListener('click', nextImage);
+    setElementStyle('lb-main', { transform: ` translateX(25%)`, display: 'inline' })
+    setElementStyle('rb-main', { transform: ` translateX(-25%)`, display: 'inline' })
+
+  }
+
+  function removeClickEvent() {
+    document.getElementById('lb-main').removeEventListener('click', prevImage);
+    document.getElementById('rb-main').removeEventListener('click', nextImage);
+    setElementStyle('lb-main', { display: 'none' })
+    setElementStyle('rb-main', { display: 'none' })
+  }
+
+  function checkScreenSize() {
+    if (window.innerWidth >= 425) {
+      removeClickEvent();
+      setElementStyle('product-img', {}, openLightBox)
+    } else {
+      addClickEvent();
+      setElementStyle('product-img', {}, () => { });
+    }
+  }
+  // Check on window resize
+  window.addEventListener('resize', checkScreenSize);
+  // Initial check on page load
+  checkScreenSize();
+
+  LButton.addEventListener("click", () => {
+    prevImage();
+  })
+
+  RButton.addEventListener("click", () => {
+    nextImage();
+  })
+
 
   thumbnailUrls.forEach((imageUrl, index) => {
     const thumbnail = createThumbnail(imageUrl, "thumbnail", index);
@@ -76,7 +117,26 @@ document.addEventListener("DOMContentLoaded", function () {
     removeAllSelectedClass(".img-selection img");
     addClassAtIndex(".img-selection img", index, "selected");
   }
+
+  function nextImage() {
+    if (currentImageIndex + 1 >= imageUrls.length) {
+      currentImageIndex = 0;
+      selectImage(0);
+    }
+
+    else { selectImage(currentImageIndex + 1); currentImageIndex++ }
+  }
+
+  function prevImage() {
+    if (currentImageIndex - 1 < 0) { selectImage(imageUrls.length - 1); currentImageIndex = imageUrls.length - 1 }
+    else { selectImage(currentImageIndex - 1); currentImageIndex-- }
+  }
 });
+
+
+
+
+
 
 // LightBox
 function openLightBox() {
@@ -123,11 +183,11 @@ function fillCart() {
         <h5 class="prod-desc">${sneakers.name}</h5>
         <h6 class="prod-desc">
           <span>${intPriceToUSD(
-            sneakers.currentPrice
-          )} x ${productQuantity}</span>
+    sneakers.currentPrice
+  )} x ${productQuantity}</span>
           <span class="prod-total">${intPriceToUSD(
-            sneakers.currentPrice * productQuantity
-          )}</span>
+    sneakers.currentPrice * productQuantity
+  )}</span>
         </h6>
       </div>
       <img id="remove-item-svg" src="images/icon-delete.svg" onclick="removeFromCart()" />
