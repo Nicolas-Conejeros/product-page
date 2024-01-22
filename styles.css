@@ -9,10 +9,12 @@ body {
     "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-weight: 500;
+  overflow-x: hidden;
 }
 
 /* Product */
 .prod-wrapper {
+  z-index: 1;
   justify-content: space-between;
   display: flex;
   flex-wrap: wrap;
@@ -28,7 +30,6 @@ body {
 
 .prod-desc {
   font-size: 1.125rem;
-  /* 18px */
   font-weight: 400;
   color: #6b7280;
 }
