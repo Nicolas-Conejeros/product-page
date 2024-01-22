@@ -31,6 +31,7 @@
 }
 
 #modalOverlay {
+  z-index: 6;
   position: fixed;
   top: 0;
   left: 0;
@@ -43,7 +44,6 @@
 }
 
 #lightbox {
-  z-index: 9999;
   padding: 20px;
   border-radius: 8px;
   width: 40%;
@@ -75,10 +75,12 @@
 .img-selection img.selected {
   opacity: 0.5;
 }
+
 @media screen and (max-width: 425px) {
   .prod-img {
     border-radius: 0px;
   }
+
   .img-selection {
     display: none;
   }

@@ -2,14 +2,14 @@
   margin-top: 20%;
   text-transform: uppercase;
   color: #f59e0b;
-  font-size: 1rem; /* 16px */
-  line-height: 1.5rem; /* 24px */
+  font-size: 1rem;
+  line-height: 1.5rem;
   letter-spacing: 0.05em;
 }
 
 #prod-title {
   text-transform: capitalize;
-  font-size: 3rem; /* 48px */
+  font-size: 3rem;
 }
 
 #item-description {
@@ -23,10 +23,11 @@
 }
 
 #price {
-  font-size: 1.875rem; /* 30px */
-  line-height: 2.25rem; /* 36px */
+  font-size: 1.875rem;
+  line-height: 2.25rem;
   font-weight: 600;
 }
+
 #disscount {
   margin: 0 1rem;
   display: flex;
@@ -43,7 +44,7 @@
 #prev-price {
   margin-top: 0.75rem;
   margin-bottom: 1.5rem;
-  font-size: 1.25rem; /* 20px */
+  font-size: 1.25rem;
   font-weight: 600;
   color: #6b7280;
   text-decoration-line: line-through;
@@ -69,7 +70,7 @@
 
 #quantity div {
   padding: 1rem;
-  font-size: 1.25rem; /* 20px */
+  font-size: 1.25rem;
   font-weight: 600;
 }
 
@@ -102,7 +103,7 @@
   margin: 0;
   background-color: #f3f4f6;
   width: 1.25rem;
-  font-size: 1.25rem; /* 20px */
+  font-size: 1.25rem;
   font-weight: 600;
 }
 

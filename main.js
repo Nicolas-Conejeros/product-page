@@ -25,6 +25,3 @@ let filledCart = false;
 
 // Insert loaded data
 insertDataHTML();
-
-
-
