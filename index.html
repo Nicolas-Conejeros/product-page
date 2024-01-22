@@ -61,17 +61,15 @@
 
   <div class="prod-wrapper">
     <!-- Product Image -->
-    <div class="prod">
+    <div id="prod-showcase" class="prod">
       <div class="image-container">
         <img id="product-img" class="prod-img selected-image" src="images/image-product-1.jpg" draggable="false"
           onclick="openLightBox()" />
-        <svg id="lb-main" class="swipe-button left" viewBox="0 0 24 24" fill="none"
-          xmlns="http://www.w3.org/2000/svg">
+        <svg id="lb-main" class="swipe-button left" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M14 8L10 12L14 16" stroke="#200E32" strokeWidth="2" strokeLinecap="round" stroke-linejoin="round">
           </path>
         </svg>
-        <svg id="rb-main" class="swipe-button right" viewBox="0 0 24 24" fill="none"
-          xmlns="http://www.w3.org/2000/svg">
+        <svg id="rb-main" class="swipe-button right" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M10 16L14 12L10 8" stroke="#200E32" strokeWidth="2" strokeLinecap="round" stroke-linejoin="round">
           </path>
         </svg>
@@ -101,7 +99,7 @@
       </div>
     </div>
     <!-- Product Details -->
-    <div class="prod">
+    <div id="prod-info" class="prod">
       <!-- Company -->
       <h2 id="company-name">sneaker company</h2>
       <!-- Title -->
@@ -139,12 +137,13 @@
       </div>
     </div>
   </div>
-  <!--  -->
+  <!-- Scripts -->
   <script src="utils.js"></script>
   <script src="main.js"></script>
   <script src="lightBox.js"></script>
   <script src="drawer.js"></script>
   <script src="buyingOptions.js"></script>
 </body>
+
 
 </html>
