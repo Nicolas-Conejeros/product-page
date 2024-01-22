@@ -10,7 +10,6 @@
 #prod-title {
   text-transform: capitalize;
   font-size: 3rem; /* 48px */
-  margin: 0 0;
 }
 
 #item-description {

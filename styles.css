@@ -1,12 +1,14 @@
 html {
   background-color: white;
 }
+
 body {
   margin: 0 10%;
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
     "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-weight: 500;
+  overflow-x: hidden;
 }
 
 /* Product */
@@ -25,7 +27,8 @@ body {
 }
 
 .prod-desc {
-  font-size: 1.125rem; /* 18px */
+  font-size: 1.125rem;
+  /* 18px */
   font-weight: 400;
   color: #6b7280;
 }
@@ -34,13 +37,19 @@ body {
   .prod-wrapper {
     margin: 0 0;
   }
+
   .prod {
     width: 100%;
   }
-  #prod-info{
-    margin: 0% 3%;
+
+  #prod-info {
     margin-bottom: 10%;
   }
+
+  #prod-info * {
+    margin-left: 3%;
+  }
+
   body {
     margin: 0% 0%;
     min-width: fit-content;
