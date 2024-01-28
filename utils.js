@@ -8,6 +8,10 @@ function setElementStyle(elementId, styles, fn) {
     });
 }
 
+function toggleClasses(elementSelector, className) {
+    document.querySelector(elementSelector).classList.toggle(className);
+}
+
 function removeAllSelectedClass(selector) {
     document.querySelectorAll(selector).forEach((image) => image.classList.remove("selected"));
 }

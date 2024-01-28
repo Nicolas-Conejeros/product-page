@@ -68,6 +68,12 @@
   overflow: hidden;
 }
 
+#quantity.clicked {
+  user-select: none;
+  opacity: 0.4;
+  pointer-events:none;
+}
+
 #quantity div {
   padding: 1rem;
   font-size: 1.25rem;
@@ -116,6 +122,7 @@
   margin-left: 5%;
   margin-right: 10%;
   width: 45%;
+  height: 20px;
   background-color: #f59e0b;
   font-weight: 600;
   color: white;
@@ -130,6 +137,37 @@
 #cart-btn {
   width: 22px;
   height: 20px;
+  padding-right: 5%;
   fill: white;
   user-select: none;
+}
+
+#submit-btn span.added {
+  display: none;
+}
+
+#submit-btn span.added.clicked {
+  display: inline;
+  animation: fade-in 0.2s forwards;
+}
+
+@keyframes fade-in {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+#submit-btn span.add-to-cart {
+  opacity: 1;
+}
+
+#submit-btn span.add-to-cart.clicked,
+svg.clicked {
+  display: none;
 }
