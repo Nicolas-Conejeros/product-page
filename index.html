@@ -41,7 +41,7 @@
         <li><a href="#">Contact</a></li>
       </ul>
     </div>
-    <div class="navbar-right" onmouseleave="toggleCart()">
+    <div class="navbar-right">
       <!-- Cart SVG -->
       <img class="cart" src="images/icon-cart.svg" onclick="toggleCart()" />
 
@@ -49,7 +49,7 @@
       <img class="avatar" src="images/image-avatar.png" onclick="toggleCart()" />
 
       <!-- Cart -->
-      <div class="cart-info" id="cart-info">
+      <div class="cart-info" id="cart-info" onmouseleave="toggleCart()">
         <div class="cart-header">Cart</div>
 
         <div class="cart-body" id="cart-list"></div>
