@@ -26,6 +26,10 @@
   z-index: 999;
 }
 
+.cart-info.clicked {
+  display: inline;
+}
+
 @media screen and (max-width: 425px) {
   .cart-info {
     max-height: 300px;

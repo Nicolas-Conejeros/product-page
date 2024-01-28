@@ -16,3 +16,7 @@ function openCart() {
 function closeCart() {
     setElementStyle("cart-info", { display: "none" });
 }
+
+function toggleCart(){
+    toggleClasses("#cart-info", "clicked")
+}

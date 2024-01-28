@@ -41,15 +41,15 @@
         <li><a href="#">Contact</a></li>
       </ul>
     </div>
-    <div class="navbar-right" >
+    <div class="navbar-right" onmouseleave="toggleCart()">
       <!-- Cart SVG -->
-      <img class="cart" src="images/icon-cart.svg" onclick="openCart()" />
+      <img class="cart" src="images/icon-cart.svg" onclick="toggleCart()" />
 
       <!-- User -->
-      <img class="avatar" src="images/image-avatar.png" onclick="openCart()" />
+      <img class="avatar" src="images/image-avatar.png" onclick="toggleCart()" />
 
       <!-- Cart -->
-      <div class="cart-info" id="cart-info" onmouseleave="closeCart()">
+      <div class="cart-info" id="cart-info">
         <div class="cart-header">Cart</div>
 
         <div class="cart-body" id="cart-list"></div>
